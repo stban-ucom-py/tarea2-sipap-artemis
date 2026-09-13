@@ -145,12 +145,9 @@ Resultado: **10 pruebas ejecutadas sin fallos**.
 
 ## Evidencias
 
-Las capturas son de la ejecución completa realizada en mi computadora. La
-primera muestra las pruebas ejecutadas directamente en PowerShell:
+La evidencia muestra las pruebas ejecutadas directamente en PowerShell:
 
 ![Pruebas automáticas](evidencias/01-pruebas-automaticas-pantalla-completa.png)
-
-![Integración con Artemis y WireMock](evidencias/02-integracion-real-pantalla-completa.png)
 
 También dejé el resultado escrito en:
 
