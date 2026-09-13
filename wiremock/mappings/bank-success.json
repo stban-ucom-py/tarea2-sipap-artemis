@@ -1,0 +1,16 @@
+{
+  "priority": 10,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/banks/(0015|0007|0020)/transfers"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id_transaccion": "{{request.headers.X-Transaction-Id}}",
+      "estado": "APROBADA",
+      "mensaje": "Transferencia recibida por el banco simulado"
+    }
+  }
+}

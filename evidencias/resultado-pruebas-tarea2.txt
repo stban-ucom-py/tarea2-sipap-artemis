@@ -1,0 +1,18 @@
+TAREA 2 - RESULTADO DE PRUEBAS AUTOMATIZADAS
+Fecha de ejecución: 2026-09-13
+Comando: mvn test
+
+Resultado total: 10 pruebas ejecutadas, 0 fallos, 0 errores, 0 omitidas.
+
+Clases:
+- SipapRoutesTest: 8 escenarios de rutas, reglas, fechas, mock, duplicados y correlación.
+- TlvCodecTest: 2 escenarios heredados del codec TLV.
+
+Validaciones destacadas:
+- G. 10.000.000 inclusive aceptado.
+- G. 10.000.001 rechazado antes de invocar el banco.
+- QR estático completado con monto del contrato REST.
+- Fecha distinta produce RECHAZADA_FECHA sin invocar al banco.
+- HTTP 422 del mock produce ERROR_BANCO.
+- ID duplicado no se procesa dos veces.
+- id_transaccion llega a auditoría, petición mock y resultado final.

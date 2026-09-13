@@ -1,0 +1,33 @@
+TAREA 2 - EVIDENCIA DE INTEGRACIÓN REAL
+Fecha: 2026-09-13
+Componentes: API Camel + ActiveMQ Artemis 2.40.0 + WireMock 3.13.1
+
+1. TRANSFERENCIA VÁLIDA
+POST -> HTTP 202
+{"id_transaccion":"TX-DEMO-OK","estado":"ACEPTADA_PARA_PROCESAMIENTO","mensaje":"Transferencia enviada a la cola"}
+
+GET resultado -> HTTP 200
+{"id_transaccion":"TX-DEMO-OK","estado":"PROCESADA","mensaje":"Transferencia procesada exitosamente por ITAU"}
+
+2. MONTO SUPERIOR AL MÁXIMO
+{"id_transaccion":"TX-DEMO-MONTO","estado":"RECHAZADA","mensaje":"El monto supera máximo permitido"}
+
+3. FECHA ANTERIOR
+POST: ACEPTADA_PARA_PROCESAMIENTO
+Resultado final: RECHAZADA_FECHA
+Mensaje: La fecha de transacción no coincide con la fecha actual
+
+4. RESPUESTA RECHAZADA DEL BANCO MOCK
+POST: ACEPTADA_PARA_PROCESAMIENTO
+Resultado final: ERROR_BANCO
+Mensaje: El banco mock respondió con HTTP 422
+
+5. DUPLICADO
+{"id_transaccion":"TX-DEMO-OK","estado":"DUPLICADA","mensaje":"La transferencia ya fue recibida anteriormente"}
+
+6. CORRELACIÓN OBSERVADA EN WIREMOCK
+/banks/0015/transfers | X-Transaction-Id: TX-DEMO-OK | HTTP 200
+/banks/0015/transfers | X-Transaction-Id: TX-REJECT-DEMO | HTTP 422
+
+Conclusión: se verificó publicación, consumo, validación de fecha, correlación y
+request-reply contra los componentes Docker reales.

@@ -1,0 +1,19 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/banks/(0015|0007|0020)/transfers",
+    "headers": {
+      "X-Transaction-Id": { "matches": "TX-REJECT.*" }
+    }
+  },
+  "response": {
+    "status": 422,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id_transaccion": "{{request.headers.X-Transaction-Id}}",
+      "estado": "RECHAZADA",
+      "mensaje": "Cuenta bloqueada en el banco simulado"
+    }
+  }
+}

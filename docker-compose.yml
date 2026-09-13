@@ -1,0 +1,20 @@
+services:
+  artemis:
+    image: apache/activemq-artemis:2.40.0-alpine
+    container_name: sipap-artemis
+    environment:
+      ARTEMIS_USER: admin
+      ARTEMIS_PASSWORD: admin
+      ANONYMOUS_LOGIN: "false"
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+
+  wiremock:
+    image: wiremock/wiremock:3.13.1
+    container_name: sipap-bank-mock
+    command: ["--global-response-templating", "--verbose"]
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./wiremock:/home/wiremock
